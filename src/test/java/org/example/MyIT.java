@@ -1,18 +1,13 @@
 package org.example;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MyTest {
+public class MyIT {
   @Test
-  void unitTest1() {
+  void integrationTest() {
     assertThat(true).isTrue();
-  }
-
-  @Test
-  void unitTest2() {
-    assertThat(true).isTrue();
-//    assertThat(true).isFalse();
   }
 }

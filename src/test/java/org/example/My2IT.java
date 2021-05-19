@@ -4,15 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class MyTest {
+public class My2IT {
   @Test
-  void unitTest1() {
+  void integrationTest2() {
     assertThat(true).isTrue();
-  }
-
-  @Test
-  void unitTest2() {
-    assertThat(true).isTrue();
-//    assertThat(true).isFalse();
   }
 }

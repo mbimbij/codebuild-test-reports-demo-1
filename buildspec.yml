@@ -9,12 +9,19 @@ phases:
       java: corretto11
   build:
     commands:
-      - echo Build started on `date`
-      - mvn --version
-      - ls
-      - mvn surefire-report:report
+      - mvn verify
+  post_build:
+    commands:
+      - mvn test -Dtest=CucumberRunnerPostDeploy -Dcucumber.plugin="junit:target/cucumber-reports/postdeploy/cucumber-results.xml, usage:target/cucumber-reports/postdeploy/cucumber-usage.json"
+    finally:
+      - find target/surefire-reports/ -name "*Cucumber*" | xargs rm
+      - find target/failsafe-reports/ -name "*Cucumber*" | xargs rm
 reports:
-  SurefireReports:
+  BuildTimeTests:
     files:
-      - '**/*'
-    base-directory: 'target/surefire-reports' # Location of the reports
+      - 'target/surefire-reports/TEST*.xml'
+      - 'target/failsafe-reports/TEST*.xml'
+      - 'target/cucumber-reports/buildtime/cucumber-results.xml'
+  Integration:
+    files:
+      - 'target/cucumber-reports/postdeploy/cucumber-results.xml'
