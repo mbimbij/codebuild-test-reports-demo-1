@@ -23,7 +23,7 @@ reports:
       - 'target/cucumber-reports/postdeploy/cucumber-results.xml'
   jacoco-report:
     files:
-      - 'target/site/jacoco/jacoco.xml'
+      - 'target/site/jacoco-aggregate/jacoco.xml'
     file-format: 'JACOCOXML'
 cache:
   paths:

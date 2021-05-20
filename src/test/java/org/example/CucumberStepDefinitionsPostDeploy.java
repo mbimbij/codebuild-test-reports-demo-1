@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class CucumberStepDefinitionsPostDeploy {
   @Given("given postdeploy")
-  public void oiu() {
+  public void givenPostDeploy() {
 
   }
 
