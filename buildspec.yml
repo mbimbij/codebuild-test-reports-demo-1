@@ -1,8 +1,4 @@
 version: 0.2
-
-#env:
-#  variables:
-#    JAVA_HOME: "/usr/lib/jvm/java-11-openjdk-amd64"
 phases:
   install:
     runtime-versions:
@@ -14,8 +10,8 @@ phases:
     commands:
       - mvn test -Dtest=CucumberRunnerPostDeploy -Dcucumber.plugin="junit:target/cucumber-reports/postdeploy/cucumber-results.xml, usage:target/cucumber-reports/postdeploy/cucumber-usage.json"
     finally:
-      - find target/surefire-reports/ -name "*Cucumber*" | xargs rm
-      - find target/failsafe-reports/ -name "*Cucumber*" | xargs rm
+      - find target/surefire-reports/ -name "*Cucumber*" -delete
+      - find target/failsafe-reports/ -name "*Cucumber*" -delete
 reports:
   BuildTimeTests:
     files:
@@ -25,3 +21,10 @@ reports:
   Integration:
     files:
       - 'target/cucumber-reports/postdeploy/cucumber-results.xml'
+  jacoco-report:
+    files:
+      - 'target/site/jacoco/jacoco.xml'
+    file-format: 'JACOCOXML'
+cache:
+  paths:
+    - '/root/.m2/**/*'
